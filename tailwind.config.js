@@ -21,7 +21,8 @@ module.exports = {
                 "theme-blue-deep": "#0a192f",
                 "theme-gray-light": "#ccd6f6",
                 "theme-gray-deep": "#8892b0",
-            }
+            },
+            stroke: ['hover', 'focus'],
         },
     },
     variants: {
