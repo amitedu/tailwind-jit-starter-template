@@ -15,46 +15,62 @@
 
 <body class="bg-theme-blue-deep pt-16 overflow-x-hidden ">
 
+    <!-- Need to fix mobile button and change colors -->
+
     <!-- New Navbar -->
-    <nav class="flex items-center bg-gray-800 p-3 flex-wrap">
-        <a href="#"
-            class="p-2 mr-4"
-        >
+    <nav class="flex  bg-theme-blue-deep opacity-90 flex-wrap fixed inset-x-0 top-0 z-50"
+        x-data="{ showMobileMenu : false }">
+        <a href="#" class="p-2 mr-4 md:ml-8 lg:ml-10 mt-5 ml-4">
             <img alt="site logo" src="images/my_portfolio_logo.svg" width="40">
         </a>
-        <div x-data="{ showMobileMenu : false }">
-            <button
-                @click="showMobileMenu = ! showMobileMenu"
-                class="text-white inline-flex p-3 hover:bg-gray-900 rounded md:hidden ml-auto"
-            >
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                </svg>
-            </button>
-            <div
-                class="w-full md:inline-flex md:flex-grow md:w-auto"
-                id="navigation"
-            >
-                <div
-                    :class="showMobileMenu ? '' : 'hidden'"
-                    class="md:inline-flex md:flex-row md:ml-auto flex flex-col"
-                >
-                    <a href="#"
-                        class="md:inline-flex md:w-auto px-3 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-900"
-                    ><span>Home</span></a>
-                    <a href="#"
-                        class="md:inline-flex md:w-auto px-3 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-900"
-                    ><span>About</span></a>
-                    <a href="#"
-                        class="md:inline-flex md:w-auto px-3 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-900"
-                    ><span>Services</span></a>
-                    <a href="#"
-                        class="md:inline-flex md:w-auto px-3 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-900"
-                    ><span>Gallery</span></a>
-                    <a href="#"
-                        class="md:inline-flex md:w-auto px-3 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-900"
-                    ><span>Contact</span></a>
-                </div>
+        <div @click.away="showMobileMenu = false" @keydown.escape="showMobileMenu = false"
+            :class=" ! showMobileMenu ? '' : 'bg-[#112240] w-1/2'" class="ml-auto md:w-auto">
+
+            <!-- Mobile menu button -->
+            <div class="flex justify-between">
+                <div></div>
+                <button @click="showMobileMenu = ! showMobileMenu"
+                    class="text-right inline-flex p-2 md:hidden mt-4 mr-2 text-theme-aquamarine focus:btn-outline">
+                    <svg x-show=" ! showMobileMenu" class="h-11 w-11" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="1.5" />
+                    </svg>
+                    <svg x-show="showMobileMenu" class="h-11 w-11" data-darkreader-inline-fill=""
+                        data-darkreader-inline-stroke="" fill="none" stroke="currentColor"
+                        style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div :class="showMobileMenu ? '' : 'hidden'" class="md:inline-flex md:flex-row md:ml-auto md:h-auto md:mr-6 lg:mr-8 md:mt-6 md:text-sm
+                flex flex-col h-screen items-center mt-48">
+                <a href="#" class="md:inline-flex md:w-auto md:mt-0  px-3 text-center py-3 rounded"><span
+                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">01<span
+                            class="font-extrabold md:font-normal">.</span></span>
+                    <span
+                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">About</span></a>
+                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
+                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">02<span
+                            class="font-extrabold md:font-normal">.</span></span>
+                    <span
+                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Experience</span></a>
+                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
+                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">03<span
+                            class="font-extrabold md:font-normal">.</span></span>
+                    <span
+                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Work</span></a>
+                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
+                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">04<span
+                            class="font-extrabold md:font-normal">.</span></span>
+                    <span
+                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Contact</span></a>
+                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center mt-14 md:mt-0"><span
+                        class="text-theme-aquamarine border border-theme-aquamarine md:py-2 md:px-4 py-4 px-12 md:rounded-sm rounded-md hover:bg-theme-aquamarine hover:bg-opacity-10">Resume</span></a>
             </div>
         </div>
     </nav>
@@ -113,7 +129,7 @@
 
     </header> -->
 
-    <div class="flex">
+    <div class="flex mt-10">
         <div class="flex-none w-10 hidden sm:block">
             <!-- This item will not grow -->
             <!-- Side Bar -->
@@ -199,7 +215,7 @@
             </div>
 
         </div>
-        <div class="flex-grow">
+        <div class="">
             <!-- This item will grow -->
             <!-- Intro -->
             <section class="py-20 mt-24 px-10" id="intro">
@@ -302,8 +318,7 @@
                             <div class="w-2/3 flex justify-center">
                                 <div class="border-2 border-theme-aquamarine rounded">
                                     <img class="-mt-4 -ml-4 mr-4 mb-4 w-full h-auto rounded opacity-40 hover:opacity-100"
-                                        height="500px"
-                                        src="images/face1.jpg" width="500px">
+                                        height="500px" src="images/face1.jpg" width="500px">
                                 </div>
                             </div>
                         </div>
