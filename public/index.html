@@ -10,27 +10,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display-swqp" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="images/my_title_logo.svg" rel="icon">
+    <style>
+        /* .sticky-container{
+        z-index: 1100;
+        } */
+
+        /* Works on Chrome, Edge, and Safari */
+        *::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #0A192F;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #5C6C8B;
+            border-radius: 20px;
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #5C6C8B #0A192F;
+        }
+    </style>
     <title>Amit Das</title>
 </head>
 
-<body class="bg-theme-blue-deep pt-16 overflow-x-hidden ">
-
-    <!-- Need to fix mobile button and change colors -->
+<body class="pt-16 overflow-x-hidden bg-theme-blue-deep antialiased">
 
     <!-- New Navbar -->
-    <nav class="flex  bg-theme-blue-deep opacity-90 flex-wrap fixed inset-x-0 top-0 z-50"
+    <nav class="fixed inset-x-0 top-0 z-50 flex flex-wrap bg-theme-blue-deep opacity-90"
         x-data="{ showMobileMenu : false }">
-        <a href="#" class="p-2 mr-4 md:ml-8 lg:ml-10 mt-5 ml-4">
+        <a href="#" class="p-2 mt-5 ml-4 mr-4 md:ml-8 lg:ml-10">
             <img alt="site logo" src="images/my_portfolio_logo.svg" width="40">
         </a>
         <div @click.away="showMobileMenu = false" @keydown.escape="showMobileMenu = false"
-            :class=" ! showMobileMenu ? '' : 'bg-[#112240] w-1/2'" class="ml-auto md:w-auto">
+            :class=" showMobileMenu ? 'bg-[#112240] sm:w-1/2 w-2/3' : ''"
+            class="ml-auto md:bg-theme-blue-deep md:w-auto">
 
             <!-- Mobile menu button -->
             <div class="flex justify-between">
                 <div></div>
-                <button @click="showMobileMenu = ! showMobileMenu"
-                    class="text-right inline-flex p-2 md:hidden mt-4 mr-2 text-theme-aquamarine focus:btn-outline">
+                <button :class=" ! showMobileMenu ? 'bg-theme-blue-deep' : 'bg-[#112240]'"
+                    @click="showMobileMenu = ! showMobileMenu"
+                    class="inline-flex p-2 mt-4 mr-2 text-right md:hidden text-theme-aquamarine focus:btn-outline">
                     <svg x-show=" ! showMobileMenu" class="h-11 w-11" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round"
@@ -47,66 +72,72 @@
                 </button>
             </div>
 
-            <div :class="showMobileMenu ? '' : 'hidden'" class="md:inline-flex md:flex-row md:ml-auto md:h-auto md:mr-6 lg:mr-8 md:mt-6 md:text-sm
-                flex flex-col h-screen items-center mt-48">
-                <a href="#" class="md:inline-flex md:w-auto md:mt-0  px-3 text-center py-3 rounded"><span
-                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">01<span
+            <div :class="showMobileMenu ? '' : 'hidden'"
+                class="flex flex-col items-center h-screen mt-48 md:inline-flex md:flex-row md:ml-auto md:h-auto md:mr-6 lg:mr-8 md:mt-6 md:text-sm">
+                <a href="#about" class="px-3 py-3 text-center md:inline-flex md:w-auto md:mt-0">
+                    <span class="block mb-1 text-sm tracking-wide text-theme-aquamarine md:tracking-normal md:mb-0">
+                        01
+                        <span class="font-extrabold md:font-normal">
+                            .
+                        </span>
+                    </span>
+                    <span
+                        class="text-lg tracking-wide text-theme-gray-light hover:text-theme-aquamarine md:px-2 md:text-sm md:tracking-normal">
+                        About
+                    </span>
+                </a>
+                <a href="#experience" class="px-3 py-3 mt-3 text-center rounded md:inline-flex md:w-auto md:mt-0"><span
+                        class="block mb-1 text-sm tracking-wide text-theme-aquamarine md:tracking-normal md:mb-0">02<span
                             class="font-extrabold md:font-normal">.</span></span>
                     <span
-                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">About</span></a>
-                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
-                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">02<span
+                        class="text-lg tracking-wide text-theme-gray-light hover:text-theme-aquamarine md:px-2 md:text-sm md:tracking-normal">Experience</span></a>
+                <a href="#work" class="px-3 py-3 mt-3 text-center rounded md:inline-flex md:w-auto md:mt-0"><span
+                        class="block mb-1 text-sm tracking-wide text-theme-aquamarine md:tracking-normal md:mb-0">03<span
                             class="font-extrabold md:font-normal">.</span></span>
                     <span
-                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Experience</span></a>
-                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
-                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">03<span
+                        class="text-lg tracking-wide text-theme-gray-light hover:text-theme-aquamarine md:px-2 md:text-sm md:tracking-normal">Work</span></a>
+                <a href="#contact" class="px-3 py-3 mt-3 text-center rounded md:inline-flex md:w-auto md:mt-0"><span
+                        class="block mb-1 text-sm tracking-wide text-theme-aquamarine md:tracking-normal md:mb-0">04<span
                             class="font-extrabold md:font-normal">.</span></span>
                     <span
-                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Work</span></a>
-                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center rounded mt-3 md:mt-0"><span
-                        class="block text-theme-aquamarine text-sm tracking-wide md:tracking-normal mb-1 md:mb-0">04<span
-                            class="font-extrabold md:font-normal">.</span></span>
-                    <span
-                        class="text-theme-gray-light hover:text-theme-aquamarine md:px-2 text-lg md:text-sm tracking-wide md:tracking-normal">Contact</span></a>
-                <a href="#" class="md:inline-flex md:w-auto px-3 py-3 text-center mt-14 md:mt-0"><span
-                        class="text-theme-aquamarine border border-theme-aquamarine md:py-2 md:px-4 py-4 px-12 md:rounded-sm rounded-md hover:bg-theme-aquamarine hover:bg-opacity-10">Resume</span></a>
+                        class="text-lg tracking-wide text-theme-gray-light hover:text-theme-aquamarine md:px-2 md:text-sm md:tracking-normal">Contact</span></a>
+                <a href="#" class="px-3 py-3 text-center md:inline-flex md:w-auto mt-14 md:mt-0"><span
+                        class="px-12 py-4 border rounded-custom text-theme-aquamarine border-theme-aquamarine md:py-2 md:px-4 md:rounded-sm hover:bg-theme-aquamarine hover:bg-opacity-10">Resume</span></a>
             </div>
         </div>
     </nav>
 
-    <!-- Navbar -->
+    <!-- Old Navbar -->
     <!-- <header class="fixed inset-x-0 top-0 ">
         <div class="max-w-screen ">
             <div
-                class="flex items-center justify-between py-8 px-10 bg-theme-blue-deep opacity-90">
+                class="flex items-center justify-between px-10 py-8 bg-theme-blue-deep opacity-90">
                 <img alt="site logo" src="images/my_portfolio_logo.svg" width="40">
-                <div class="hidden md:flex text-sm">
-                    <a class="text-theme-gray-light py-2 px-4" href="#">
-                        <span class="text-theme-aquamarine mr-1">01.</span>
+                <div class="hidden text-sm md:flex">
+                    <a class="px-4 py-2 text-theme-gray-light" href="#">
+                        <span class="mr-1 text-theme-aquamarine">01.</span>
                         <span class="text-theme-gray-light hover:text-theme-aquamarine">About</span>
                     </a>
-                    <a class="text-theme-gray-light py-2 px-4" href="#">
-                        <span class="text-theme-aquamarine mr-1">02.</span>
+                    <a class="px-4 py-2 text-theme-gray-light" href="#">
+                        <span class="mr-1 text-theme-aquamarine">02.</span>
                         <span class="text-theme-gray-light hover:text-theme-aquamarine">Experience</span>
                     </a>
-                    <a class="text-theme-gray-light py-2 px-4" href="#">
-                        <span class="text-theme-aquamarine mr-1">03.</span>
+                    <a class="px-4 py-2 text-theme-gray-light" href="#">
+                        <span class="mr-1 text-theme-aquamarine">03.</span>
                         <span class="text-theme-gray-light hover:text-theme-aquamarine">Work</span>
                     </a>
-                    <a class="text-theme-gray-light py-2 px-4" href="#">
-                        <span class="text-theme-aquamarine mr-1">04.</span>
+                    <a class="px-4 py-2 text-theme-gray-light" href="#">
+                        <span class="mr-1 text-theme-aquamarine">04.</span>
                         <span class="text-theme-gray-light hover:text-theme-aquamarine">Contact</span>
                     </a>
-                    <a class="ml-4 text-theme-aquamarine py-2 px-4 rounded-md border
-                            border-theme-aquamarine hover:bg-theme-aquamarine hover:bg-opacity-10" href="#">
+                    <a class="px-4 py-2 ml-4 border rounded-md text-theme-aquamarine border-theme-aquamarine hover:bg-theme-aquamarine hover:bg-opacity-10" href="#">
                         Resume
                     </a>
                 </div>
-                <div @click="showMobileMenu = ! showMobileMenu" class="md:hidden flex flex-wrap items-center text-white"
+                <div @click="showMobileMenu = ! showMobileMenu" class="flex flex-wrap items-center text-white md:hidden"
                     x-data="{ showMobileMenu : false }">
                     <div>
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" />
@@ -114,13 +145,13 @@
                     </div>
 
                     <div :class="showMobileMenu ? '' : 'hidden'" class="md:hidden">
-                        <a class="text-theme-gray-deep hover:text-theme-aquamarine block py-2 px-4 text-sm"
+                        <a class="block px-4 py-2 text-sm text-theme-gray-deep hover:text-theme-aquamarine"
                             href="#">About</a>
-                        <a class="text-theme-gray-deep hover:text-theme-aquamarine block py-2 px-4 text-sm"
+                        <a class="block px-4 py-2 text-sm text-theme-gray-deep hover:text-theme-aquamarine"
                             href="#">Contact</a>
-                        <a class="text-theme-gray-deep hover:text-theme-aquamarine block py-2 px-4 text-sm"
+                        <a class="block px-4 py-2 text-sm text-theme-gray-deep hover:text-theme-aquamarine"
                             href="#">Contact</a>
-                        <a class="text-theme-gray-deep hover:text-theme-aquamarine block py-2 px-4 text-sm"
+                        <a class="block px-4 py-2 text-sm text-theme-gray-deep hover:text-theme-aquamarine"
                             href="#">Contact</a>
                     </div>
                 </div>
@@ -129,445 +160,538 @@
 
     </header> -->
 
-    <div class="flex mt-10">
-        <div class="flex-none w-10 hidden sm:block">
-            <!-- This item will not grow -->
-            <!-- Side Bar -->
-            <div class="flex flex-row h-full fixed">
-                <nav class=" w-16 h-screen justify-center flex flex-col">
-                    <div class="mt-60 mb-10">
-                        <div class="mt-48">
-                            <ul>
-                                <li class="my-8 text-center">
-                                    <a href="#">
-                                        <span
-                                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                                color="theme-blue-light" fill="none" role="img" height="20"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="my-8 text-center">
-                                    <a href="#">
-                                        <span
-                                            class="h-4 w-4 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                                xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"
-                                                fill="none" height="20" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-twitter">
-                                                <title>Twitter</title>
-                                                <path
-                                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="my-8 text-center">
-                                    <a href="#">
-                                        <span
-                                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                                fill="none" role="img" height="20" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>Instagram</title>
-                                                <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
-                                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5">
+    <!-- Social Icons Sidebar -->
+    <div class="invisible bg-theme-blue-deep md:visible left-8 lg:left-12 -bottom-5 fixed">
+        <ul class="float-left">
+            <li class="py-2 mt-4 transform hover:-translate-y-1 transition duration-500 ease-in-out">
+                <a href="#">
+                    <span
+                        class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                        <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                            color="theme-blue-light" fill="none" role="img" height="20" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>GitHub</title>
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+            <li class="py-2 mt-4 transform hover:-translate-y-1 transition duration-500 ease-in-out">
+                <a href="#">
+                    <span
+                        class="h-4 w-4 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                        <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" height="20"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-twitter">
+                            <title>Twitter</title>
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+            <li class="py-2 mt-4 transform hover:-translate-y-1 transition duration-500 ease-in-out">
+                <a href="#">
+                    <span
+                        class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                        <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" height="20"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-linkedin">
+                            <title>LinkedIn</title>
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+            <li class="py-2 mt-4 transform hover:-translate-y-1 transition duration-500 ease-in-out">
+                <a href="#">
+                    <span
+                        class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                        <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine" fill="none"
+                            role="img" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Instagram</title>
+                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5">
 
-                                                </line>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="my-8 text-center">
-                                    <a href="#">
-                                        <span
-                                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                                xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"
-                                                fill="none" height="20" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-linkedin">
-                                                <title>LinkedIn</title>
-                                                <path
-                                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                                </path>
-                                                <rect x="2" y="9" width="4" height="12"></rect>
-                                                <circle cx="4" cy="4" r="2"></circle>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                            </line>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+            <li class="py-2 mt-6">
+                <div class="w-px mx-auto bg-theme-gray-light h-[100px]"></div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Side Email -->
+    <div class="invisible md:visible -right-12 lg:-right-6 -bottom-5 fixed">
+        <ul class="float-right">
+            <li class="py-2 mb-[88px] transform rotate-90 hover:-translate-y-1 transition duration-500 ease-in-out">
+                <a href="mailto:amitedu55@gmil.com" rel="noopener" target="_blank">
+                    <span class="h-6 w-6 text-[#a8b2d1] mx-auto hover:text-theme-aquamarine transition-colors
+                        duration-200 text-xs tracking-[0.150em]">
+                        amitedu55@gmail.com
+                    </span>
+                </a>
+            </li>
+            <li class="py-2">
+                <div class="w-px mx-auto bg-theme-gray-light h-[100px]"></div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="md:ml-12">
+
+        <!-- Intro -->
+        <section class="px-10 py-20 mt-24 xs:px-6" id="intro">
+            <div class="max-w-5xl px-6 mx-auto sm:px-6">
+                <h4 class="text-theme-aquamarine">Hi, my name is</h4>
+                <h1 class="mt-6 -ml-1 font-bold text-7xl text-theme-gray-light font-poppins">Amit Das.</h1>
+                <h1 class="mt-6 text-6xl font-bold text-theme-gray-deep font-poppins">I build things for the web.
+                </h1>
+                <div class="w-full mt-6 sm:w-5/6 md:w-4/6 lg:1/2">
+                    <p class="text-xl leading-relaxed break-words text-theme-gray-deep">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut consectetur cum
+                        ducimus
+                        ex,
+                        explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
+                        reprehenderit
+                        sed sequi sit .
+                    </p>
+                </div>
+                <a class="inline-block px-8 py-4 text-sm border rounded-custom mt-14 text-theme-aquamarine border-theme-aquamarine hover:bg-theme-aquamarine hover:bg-opacity-10"
+                    href="#">
+                    Get in Touch
+                </a>
             </div>
+        </section>
 
+        <!-- Contact Form -->
+        <div class="flex w-full justify-center items-center">
+            <div class="flex flex-col space-y-6 md:flex-row md:space-x-6 md:space-y-0 bg-cyan-700 w-full max-w-2xl lg:max-w-4xl rounded-lg shadow-lg  p-8 text-white overflow-hidden">
+                <div class="flex flex-col justify-evenly space-y-8">
+                    <div>
+                        <h1 class="text-4xl tracking-wide font-bold">Contact Us</h1>
+                        <p class="pt-2 text-xs text-cyan-100">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                            Quibusdam ducimus nemo</p>
+                    </div>
+                    <div class="flex flex-col space-y-6">
+                        <div class="inline-flex space-x-2 items-center">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon h-5 w-5 text-teal-300'
+                                viewBox='0 0 512 512'>
+                                <title>Call</title>
+                                <path
+                                    d='M451 374c-15.88-16-54.34-39.35-73-48.76-24.3-12.24-26.3-13.24-45.4.95-12.74 9.47-21.21 17.93-36.12 14.75s-47.31-21.11-75.68-49.39-47.34-61.62-50.53-76.48 5.41-23.23 14.79-36c13.22-18 12.22-21 .92-45.3-8.81-18.9-32.84-57-48.9-72.8C119.9 44 119.9 47 108.83 51.6A160.15 160.15 0 0083 65.37C67 76 58.12 84.83 51.91 98.1s-9 44.38 23.07 102.64 54.57 88.05 101.14 134.49S258.5 406.64 310.85 436c64.76 36.27 89.6 29.2 102.91 23s22.18-15 32.83-31a159.09 159.09 0 0013.8-25.8C465 391.17 468 391.17 451 374z'
+                                    fill='none' stroke='currentColor' stroke-miterlimit='10' stroke-width='32' />
+                            </svg>
+                            <span class="text-xs">+91 9804715772</span>
+                        </div>
+                        <div class="inline-flex space-x-2 items-center">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon h-5 w-5 text-teal-300'
+                                viewBox='0 0 512 512'>
+                                <title>Mail</title>
+                                <rect x='48' y='96' width='416' height='320' rx='40' ry='40' fill='none'
+                                    stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'
+                                    stroke-width='32' />
+                                <path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'
+                                    stroke-width='32' d='M112 160l144 112 144-112' />
+                            </svg>
+                            <span class="text-xs">amitedu55@gmail.com</span>
+                        </div>
+                        <div class="inline-flex space-x-2 items-center">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon h-5 w-5 text-teal-300'
+                                viewBox='0 0 512 512'>
+                                <title>Location</title>
+                                <path
+                                    d='M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z'
+                                    fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'
+                                    stroke-width='32' />
+                                <circle cx='256' cy='192' r='48' fill='none' stroke='currentColor'
+                                    stroke-linecap='round' stroke-linejoin='round' stroke-width='32' />
+                            </svg>
+                            <span class="text-xs">5/187, Jatin Das Nagar, BelGhoria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute z-0 w-40 h-40 rounded-full bg-teal-400 -right-24 -top-24"></div>
+                    <div class="absolute z-0 w-40 h-40 rounded-full bg-teal-400 -left-28 -bottom-16"></div>
+                    <div class="relative z-10 bg-white rounded-lg p-8 text-gray-600">
+                        <form action="" class="flex flex-col space-y-4">
+                            <div>
+                                <p class="text-sm tracking-wider">To: amitedu55@gmail.com</p>
+                                <!-- <label for="" class="text-sm">To:
+                                <input type="text" placeholder="amitedu55@gmail.com" readonly
+                                class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 focus:ring-2
+                                focus:ring-teal-300 outline-none text-sm text-gray-900">
+                            </label> -->
+                            </div>
+                            <div>
+                                <label for="" class="text-sm">Name:
+                                    <input type="text" placeholder="Your Name" class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 focus:ring-2
+                                focus:ring-teal-300 outline-none text-sm">
+                                </label>
+                            </div>
+                            <div>
+                                <label for="" class="text-sm">Email From:
+                                    <input type="text" placeholder="Your Email Address" class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 focus:ring-2
+                                focus:ring-teal-300 outline-none text-sm">
+                                </label>
+                            </div>
+                            <div>
+                                <label for="" class="text-sm">Message:
+                                    <textarea type="text" class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 focus:ring-2
+                                focus:ring-teal-300 outline-none text-sm" rows="3"></textarea>
+                                </label>
+                            </div>
+                            <button
+                                class="inline-block self-end rounded-lg bg-cyan-700 text-white px-6 py-2 font-bold uppercase text-sm">send
+                                message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="">
-            <!-- This item will grow -->
-            <!-- Intro -->
-            <section class="py-20 mt-24 px-10" id="intro">
-                <div class="max-w-5xl mx-auto px-6 sm:px-0">
-                    <h4 class="text-theme-aquamarine">Hi, my name is</h4>
-                    <h1 class="text-7xl font-bold text-theme-gray-light font-poppins mt-6">Amit Das.</h1>
-                    <h1 class="text-6xl font-bold text-theme-gray-deep font-poppins mt-6">I build things for the web.
-                    </h1>
-                    <div class="w-full sm:w-1/2 mt-6">
-                        <p class="text-theme-gray-deep break-words leading-relaxed text-xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut consectetur cum
-                            ducimus
-                            ex,
-                            explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
-                            reprehenderit
-                            sed sequi sit .
-                        </p>
-                    </div>
-                    <a class="mt-14 text-theme-aquamarine py-4 px-8 rounded-md border
-                   border-theme-aquamarine text-sm inline-block hover:bg-theme-aquamarine hover:bg-opacity-10"
-                        href="#">
-                        Get in Touch
-                    </a>
-                </div>
-            </section>
 
-            <!-- About-->
-            <section class="py-20 mt-48 px-10 xs:px-4" id="about">
-                <div class="max-w-5xl mx-auto px-6 sm:px-6">
-                    <header class="mb-16">
-                        <h3 class="text-theme-gray-light font-poppins">
-                            <span class="text-theme-aquamarine text-xl">01.</span>
-                            <span class="ml-2 text-3xl font-bold">About Me</span>
-                        </h3>
-                    </header>
-                    <div class="flex flex-wrap items-center">
-                        <div class="w-full sm:w-3/5 order-last sm:order-first mt-0">
-                            <div class="text-base">
-                                <p class="text-theme-gray-deep break-words leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut
-                                    consectetur
-                                    cum
-                                    ducimus
-                                    ex,
-                                    explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
-                                    reprehenderit
-                                    sed sequi sit .
-                                </p>
-                                <br>
-                                <p class="text-theme-gray-deep break-words leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut <a
-                                        class="text-theme-aquamarine font-medium" href="#">consectetur</a>
-                                    cum ducimus
-                                    ex,
-                                    explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
-                                    reprehenderit
-                                    sed sequi sit .
-                                </p>
-                                <br>
-                                <p class="text-theme-gray-deep break-words leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut <a
-                                        class="text-theme-aquamarine font-medium" href="#">consectetur</a>
-                                    cum ducimus
-                                    ex,
-                                    explicabo fuga, fugit illo, natsed sequi sit .
-                                </p>
-                            </div>
-                            <div class="flex flex-wrap text-theme-gray-deep mt-6 px-2 text-sm">
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    Javascript
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    PHP
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    Laravel
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    AlpineJS
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    Livewire
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    Tailwind
-                                </p>
-                                <p class="w-1/2 sm:w-2/5">
-                                    <span class="text-theme-aquamarine font-black mr-1 leading-6">▹</span>
-                                    MySql
-                                </p>
-                            </div>
+        <!-- About-->
+        <section class="px-10 py-20 mt-48 xs:px-6 " id="about">
+            <div class="max-w-5xl px-6 mx-auto sm:px-6">
+                <header class="mb-16">
+                    <h3 class="text-theme-gray-light font-poppins">
+                        <span class="text-xl text-theme-aquamarine">01.</span>
+                        <span class="ml-2 text-3xl font-bold">About Me</span>
+                    </h3>
+                </header>
+                <div class="flex flex-wrap items-center">
+                    <div class="order-last w-full mt-0 sm:w-3/5 sm:order-first">
+                        <div class="text-base">
+                            <p class="leading-relaxed break-words text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut
+                                consectetur
+                                cum
+                                ducimus
+                                ex,
+                                explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
+                                reprehenderit
+                                sed sequi sit .
+                            </p>
+                            <br>
+                            <p class="leading-relaxed break-words text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut <a
+                                    class="font-medium text-theme-aquamarine" href="#">consectetur</a>
+                                cum ducimus
+                                ex,
+                                explicabo fuga, fugit illo, natus non obcaecati odio perferendis quibusdam quod quos
+                                reprehenderit
+                                sed sequi sit .
+                            </p>
+                            <br>
+                            <p class="leading-relaxed break-words text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut <a
+                                    class="font-medium text-theme-aquamarine" href="#">consectetur</a>
+                                cum ducimus
+                                ex,
+                                explicabo fuga, fugit illo, natsed sequi sit .
+                            </p>
                         </div>
-                        <div class="w-full sm:w-2/5 flex items-center justify-center mb-6 sm:mb-0">
-                            <div class="w-2/3 flex justify-center">
-                                <div class="border-2 border-theme-aquamarine rounded">
-                                    <img class="-mt-4 -ml-4 mr-4 mb-4 w-full h-auto rounded opacity-40 hover:opacity-100"
-                                        height="500px" src="images/face1.jpg" width="500px">
+                        <div class="flex flex-wrap px-2 mt-6 text-sm text-theme-gray-deep">
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                Javascript
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                PHP
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                Laravel
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                AlpineJS
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                Livewire
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                Tailwind
+                            </p>
+                            <p class="w-1/2 sm:w-2/5">
+                                <span class="mr-1 font-black leading-6 text-theme-aquamarine">▹</span>
+                                MySql
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center w-full mb-6 sm:w-2/5 sm:mb-0">
+                        <div class="flex justify-center w-2/3">
+                            <div class="border-2 rounded border-theme-aquamarine">
+                                <div class="z-50 w-full h-auto mb-4 mr-4 -mt-4 -ml-4 bg-theme-aquamarine rounded-md">
+                                    <img class="rounded opacity-70 hover:opacity-100" height="500px"
+                                        src="images/face1.jpg" width="500px">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Experience -->
-            <section class="py-20 mt-12 px-10 xs:px-4" id="experience">
-                <div class="max-w-5xl mx-auto px-6 sm:px-6">
-                    <div class="flex justify-center">
-                        <div class="w-2/3 sm:w-full">
-                            <header class="mb-12">
-                                <h3 class="text-theme-gray-light font-poppins">
-                                    <span class="text-theme-aquamarine text-xl">01.</span>
-                                    <span class="ml-2 text-3xl font-bold">Where I've Worked</span>
-                                </h3>
-                            </header>
-                            <div class="flex" x-data="{currentExperience : 'google'}">
-                                <div class="w-1/6">
-                                    <div class="flex xs:flex-row sm:flex-col text-xs">
-                                        <a :class="currentExperience === 'google' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
-                                            @click.prevent="currentExperience = 'google'"
-                                            class="px-4 py-3 sm:border-l-2 sm:border-b-0 border-b-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
-                                            href="">
-                                            Google
-                                        </a>
-                                        <a :class="currentExperience === 'facebook' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
-                                            @click.prevent="currentExperience = 'facebook'"
-                                            class="px-4 py-3 sm:border-l-2 sm:border-b-0 border-b-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
-                                            href="">
-                                            Facebook
-                                        </a>
-                                        <a :class="currentExperience === 'adobe' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
-                                            @click.prevent="currentExperience = 'adobe'"
-                                            class="px-4 py-3 sm:border-l-2 sm:border-b-0 border-b-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
-                                            href="">
-                                            Adobe
-                                        </a>
-                                        <a :class="currentExperience === 'apple' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
-                                            @click.prevent="currentExperience = 'apple'"
-                                            class="px-4 py-3 sm:border-l-2 sm:border-b-0 border-b-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
-                                            href="">
-                                            Apple
-                                        </a>
-                                        <a :class="currentExperience === 'nvidia' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
-                                            @click.prevent="currentExperience = 'nvidia'"
-                                            class="px-4 py-3 sm:border-l-2 sm:border-b-0 border-b-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
-                                            href="">
-                                            Nvidia
-                                        </a>
+        <!-- Experience -->
+        <section class="px-4 py-20 mt-12 sm:ml-8 " id="experience">
+            <div class="max-w-3xl px-2 md:px-6 lg:mx-auto">
+                <div class="flex">
+                    <div class="w-full ">
+                        <header class="mb-12">
+                            <h3 class="text-theme-gray-light font-poppins">
+                                <span class="text-xl text-theme-aquamarine">01.</span>
+                                <span class="ml-2 text-3xl font-bold">Where I've Worked</span>
+                            </h3>
+                        </header>
+                        <div class="flex" x-data="{currentExperience : 'google'}">
+                            <div class="w-1/6">
+                                <div class="flex text-xs xs:flex-row sm:flex-col">
+                                    <a :class="currentExperience === 'google' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
+                                        @click.prevent="currentExperience = 'google'"
+                                        class="px-4 py-3 border-b-2 sm:border-l-2 sm:border-b-0 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
+                                        href="">
+                                        Google
+                                    </a>
+                                    <a :class="currentExperience === 'facebook' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
+                                        @click.prevent="currentExperience = 'facebook'"
+                                        class="px-4 py-3 border-b-2 sm:border-l-2 sm:border-b-0 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
+                                        href="">
+                                        Facebook
+                                    </a>
+                                    <a :class="currentExperience === 'adobe' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
+                                        @click.prevent="currentExperience = 'adobe'"
+                                        class="px-4 py-3 border-b-2 sm:border-l-2 sm:border-b-0 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
+                                        href="">
+                                        Adobe
+                                    </a>
+                                    <a :class="currentExperience === 'apple' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
+                                        @click.prevent="currentExperience = 'apple'"
+                                        class="px-4 py-3 border-b-2 sm:border-l-2 sm:border-b-0 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
+                                        href="">
+                                        Apple
+                                    </a>
+                                    <a :class="currentExperience === 'nvidia' ? 'border-theme-aquamarine text-theme-aquamarine bg-blue-400 bg-opacity-10' : 'border-theme-gray-deep text-theme-gray-deep'"
+                                        @click.prevent="currentExperience = 'nvidia'"
+                                        class="px-4 py-3 border-b-2 sm:border-l-2 sm:border-b-0 hover:bg-blue-400 hover:bg-opacity-10 hover:text-theme-aquamarine"
+                                        href="">
+                                        Nvidia
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full mt-16 xs:w-5/6 sm:mt-1 sm:px-6 xs:px-1">
+                                <div x-show="currentExperience === 'google'">
+                                    <header>
+                                        <h3 class="text-lg text-theme-gray-light font-poppins">
+                                            <span class="">Experience</span>
+                                            <span class="text-theme-aquamarine">@ <a href="">Google</a></span>
+                                        </h3>
+                                        <p class="mt-1 text-xs text-theme-gray-deep">May 2018 - Present</p>
+                                    </header>
+                                    <div class="px-1 mt-4 text-sm">
+                                        <div class="flex">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                                animi,
+                                                debitis dolor earum esse
+                                                impedit in inventore optio placeat quae repellat rerum saepe ullam
+                                                voluptates hi hello hi i?
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="w-5/6 xs:w-full mt-16 sm:mt-1 sm:px-6 xs:px-1">
-                                    <div x-show="currentExperience === 'google'">
-                                        <header>
-                                            <h3 class="text-theme-gray-light font-poppins text-lg">
-                                                <span class="">Experience</span>
-                                                <span class="text-theme-aquamarine">@ <a href="">Google</a></span>
-                                            </h3>
-                                            <p class="text-theme-gray-deep text-xs mt-1">May 2018 - Present</p>
-                                        </header>
-                                        <div class="mt-4 px-1 text-sm">
-                                            <div class="flex">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-                                                    animi,
-                                                    debitis dolor earum esse
-                                                    impedit in inventore optio placeat quae repellat rerum saepe ullam
-                                                    voluptates hi hello hi i?
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
+
+                                <div x-show="currentExperience === 'facebook'">
+                                    <header>
+                                        <h3 class="text-lg text-theme-gray-light font-poppins">
+                                            <span class="">Experience</span>
+                                            <span class="text-theme-aquamarine">@ <a href="">Facebook</a></span>
+                                        </h3>
+                                        <p class="mt-1 text-xs text-theme-gray-deep">May 2018 - Present</p>
+                                    </header>
+                                    <div class="px-1 mt-4 text-sm">
+                                        <div class="flex">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                facebook dolor sit amet, consectetur adipisicing elit. Autem beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                facebook dolor sit amet, consectetur adipisicing elit. Aliquid
+                                                animi,
+                                                debitis dolor earum esse
+                                                impedit in inventore optio placeat quae repellat rerum saepe ullam
+                                                voluptates hi hello hi i?
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                facebook dolor sit amet, consectetur adipisicing elit. Autem beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div x-show="currentExperience === 'facebook'">
-                                        <header>
-                                            <h3 class="text-theme-gray-light font-poppins text-lg">
-                                                <span class="">Experience</span>
-                                                <span class="text-theme-aquamarine">@ <a href="">Facebook</a></span>
-                                            </h3>
-                                            <p class="text-theme-gray-deep text-xs mt-1">May 2018 - Present</p>
-                                        </header>
-                                        <div class="mt-4 px-1 text-sm">
-                                            <div class="flex">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    facebook dolor sit amet, consectetur adipisicing elit. Autem beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    facebook dolor sit amet, consectetur adipisicing elit. Aliquid
-                                                    animi,
-                                                    debitis dolor earum esse
-                                                    impedit in inventore optio placeat quae repellat rerum saepe ullam
-                                                    voluptates hi hello hi i?
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    facebook dolor sit amet, consectetur adipisicing elit. Autem beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
+                                <div x-show="currentExperience === 'adobe'">
+                                    <header>
+                                        <h3 class="text-lg text-theme-gray-light font-poppins">
+                                            <span class="">Experience</span>
+                                            <span class="text-theme-aquamarine">@ <a href="">Adobe</a></span>
+                                        </h3>
+                                        <p class="mt-1 text-xs text-theme-gray-deep">May 2018 - Present</p>
+                                    </header>
+                                    <div class="px-1 mt-4 text-sm">
+                                        <div class="flex">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                adobe ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                adobe ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                                animi,
+                                                debitis dolor earum esse
+                                                impedit in inventore optio placeat quae repellat rerum saepe ullam
+                                                voluptates hi hello hi i?
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                adobe ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div x-show="currentExperience === 'adobe'">
-                                        <header>
-                                            <h3 class="text-theme-gray-light font-poppins text-lg">
-                                                <span class="">Experience</span>
-                                                <span class="text-theme-aquamarine">@ <a href="">Adobe</a></span>
-                                            </h3>
-                                            <p class="text-theme-gray-deep text-xs mt-1">May 2018 - Present</p>
-                                        </header>
-                                        <div class="mt-4 px-1 text-sm">
-                                            <div class="flex">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    adobe ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    adobe ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-                                                    animi,
-                                                    debitis dolor earum esse
-                                                    impedit in inventore optio placeat quae repellat rerum saepe ullam
-                                                    voluptates hi hello hi i?
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    adobe ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
+                                <div x-show="currentExperience === 'apple'">
+                                    <header>
+                                        <h3 class="text-lg text-theme-gray-light font-poppins">
+                                            <span class="">Experience</span>
+                                            <span class="text-theme-aquamarine">@ <a href="">Apple</a></span>
+                                        </h3>
+                                        <p class="mt-1 text-xs text-theme-gray-deep">May 2018 - Present</p>
+                                    </header>
+                                    <div class="px-1 mt-4 text-sm">
+                                        <div class="flex">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                apple ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                apple ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                                animi,
+                                                debitis dolor earum esse
+                                                impedit in inventore optio placeat quae repellat rerum saepe ullam
+                                                voluptates hi hello hi i?
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                apple ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div x-show="currentExperience === 'apple'">
-                                        <header>
-                                            <h3 class="text-theme-gray-light font-poppins text-lg">
-                                                <span class="">Experience</span>
-                                                <span class="text-theme-aquamarine">@ <a href="">Apple</a></span>
-                                            </h3>
-                                            <p class="text-theme-gray-deep text-xs mt-1">May 2018 - Present</p>
-                                        </header>
-                                        <div class="mt-4 px-1 text-sm">
-                                            <div class="flex">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    apple ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    apple ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-                                                    animi,
-                                                    debitis dolor earum esse
-                                                    impedit in inventore optio placeat quae repellat rerum saepe ullam
-                                                    voluptates hi hello hi i?
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    apple ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
+                                <div x-show="currentExperience === 'nvidia'">
+                                    <header>
+                                        <h3 class="text-lg text-theme-gray-light font-poppins">
+                                            <span class="">Experience</span>
+                                            <span class="text-theme-aquamarine">@ <a href="">Nvidia</a></span>
+                                        </h3>
+                                        <p class="mt-1 text-xs text-theme-gray-deep">May 2018 - Present</p>
+                                    </header>
+                                    <div class="px-1 mt-4 text-sm">
+                                        <div class="flex">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                nvidia ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
                                         </div>
-                                    </div>
-
-                                    <div x-show="currentExperience === 'nvidia'">
-                                        <header>
-                                            <h3 class="text-theme-gray-light font-poppins text-lg">
-                                                <span class="">Experience</span>
-                                                <span class="text-theme-aquamarine">@ <a href="">Nvidia</a></span>
-                                            </h3>
-                                            <p class="text-theme-gray-deep text-xs mt-1">May 2018 - Present</p>
-                                        </header>
-                                        <div class="mt-4 px-1 text-sm">
-                                            <div class="flex">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    nvidia ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    nvidia ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-                                                    animi,
-                                                    debitis dolor earum esse
-                                                    impedit in inventore optio placeat quae repellat rerum saepe ullam
-                                                    voluptates hi hello hi i?
-                                                </p>
-                                            </div>
-                                            <div class="flex mt-2">
-                                                <div class="text-theme-aquamarine font-black mr-2">▹</div>
-                                                <p class="text-theme-gray-deep px-2">
-                                                    nvidia ipsum dolor sit amet, consectetur adipisicing elit. Autem
-                                                    beatae
-                                                    laborum
-                                                    maxime minus quis.
-                                                </p>
-                                            </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                nvidia ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                                animi,
+                                                debitis dolor earum esse
+                                                impedit in inventore optio placeat quae repellat rerum saepe ullam
+                                                voluptates hi hello hi i?
+                                            </p>
+                                        </div>
+                                        <div class="flex mt-2">
+                                            <div class="mr-2 font-black text-theme-aquamarine">▹</div>
+                                            <p class="px-2 text-theme-gray-deep">
+                                                nvidia ipsum dolor sit amet, consectetur adipisicing elit. Autem
+                                                beatae
+                                                laborum
+                                                maxime minus quis.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -575,655 +699,659 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Work -->
-            <section class="py-20 mt-32 px-10" id="work">
-                <div class="max-w-5xl mx-auto px-6">
-                    <header class="mb-16">
-                        <h3 class="text-theme-gray-light font-poppins" id="numbered-heading">
-                            <span class="text-theme-aquamarine text-xl">03.</span>
-                            <span class="ml-2 text-3xl font-bold">Some Things I've Built</span>
-                        </h3>
-                    </header>
-                    <!-- work item 1 start -->
-                    <div class="flex flex-wrap items-center">
-                        <div class="w-full sm:w-3/5 mb-4 sm:mb-0">
-                            <img alt="" class="rounded" height="362" src="images/face1_resize.jpg" width="579">
-                        </div>
-                        <div class="w-full sm:w-2/5">
-                            <div>
-                                <p class="text-theme-aquamarine text-right text-sm py-2">Featured Project</p>
-                                <div class="text-right">
-                                    <a class="text-theme-gray-light text-3xl pb-2 hover:text-theme-aquamarine"
-                                        href="">Halcyon
-                                        Theme</a>
-                                </div>
-                            </div>
-                            <div class="bg-[#112240] rounded p-6 sm:-ml-36  mt-6 hover:shadow-2xl">
-                                <p class="leading-relaxed text-theme-gray-deep">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
-                                    obcaecati
-                                    saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                            </div>
-                            <div class="text-theme-gray-deep flex justify-between md:ml-2 sm:-ml-16 mt-6 text-sm">
-                                <span>VS Code</span>
-                                <span>Sublime Text</span>
-                                <span>Hyper</span>
-                                <span>Atom</span>
-                                <span>iTerm2</span>
-                            </div>
-                            <div class="flex justify-end mt-10 items-center">
-                                <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
-                                    <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        color="theme-blue-light" fill="none" height="20" role="img"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <title>GitHub</title>
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-
-                                        </path>
-                                    </svg>
-                                </a>
-                                <a aria-label="External Link" class="ml-5 mb-1"
-                                    href="https://halcyon-theme.netlify.com/" rel="noopener noreferrer" target="_blank">
-                                    <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <title>External Link</title>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" x2="21" y1="14" y2="3"></line>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+        <!-- Projects -->
+        <section class="px-0 py-20 mt-32 md:px-10 xs:px-6" id="work">
+            <div class="max-w-5xl px-6 mx-auto">
+                <header class="mb-16">
+                    <h3 class="text-theme-gray-light font-poppins" id="numbered-heading">
+                        <span class="text-xl text-theme-aquamarine">03.</span>
+                        <span class="ml-2 text-3xl font-bold">Some Things I've Built</span>
+                    </h3>
+                </header>
+                <!-- work item 1 start -->
+                <div class="flex flex-wrap items-center">
+                    <div class="w-full mb-4 sm:w-3/5 sm:mb-0">
+                        <img alt="" class="rounded" height="362" src="images/face1_resize.jpg" width="579">
                     </div>
-                    <!-- work item 1 end -->
-
-                    <!-- work item 2 start -->
-                    <div class="flex flex-wrap items-center mt-20 xs:mt-28">
-
-                        <div class="w-full sm:w-2/5 z-20">
-                            <div>
-                                <p class="text-theme-aquamarine text-left text-sm py-2">Featured Project</p>
-                                <div class="text-left">
-                                    <a class="text-theme-gray-light text-3xl pb-2 hover:text-theme-aquamarine"
-                                        href="">Halcyon
-                                        Theme</a>
-                                </div>
-                            </div>
-                            <div class="bg-[#112240] rounded p-6 sm:-mr-36  mt-6 hover:shadow-2xl">
-                                <p class="leading-relaxed text-theme-gray-deep">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
-                                    obcaecati
-                                    saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                            </div>
-                            <div class="text-theme-gray-deep flex justify-between md:mr-2 sm:-mr-16 mt-6 text-sm">
-                                <span>VS Code</span>
-                                <span>Sublime Text</span>
-                                <span>Hyper</span>
-                                <span>Atom</span>
-                                <span>iTerm2</span>
-                            </div>
-                            <div class="flex justify-start mt-10 items-center">
-                                <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
-                                    <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        color="theme-blue-light" fill="none" height="20" role="img"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <title>GitHub</title>
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-
-                                        </path>
-                                    </svg>
-                                </a>
-                                <a aria-label="External Link" class="ml-5 mb-1"
-                                    href="https://halcyon-theme.netlify.com/" rel="noopener noreferrer" target="_blank">
-                                    <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <title>External Link</title>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" x2="21" y1="14" y2="3"></line>
-                                    </svg>
-                                </a>
+                    <div class="w-full sm:w-2/5">
+                        <div>
+                            <p class="py-2 text-sm text-right text-theme-aquamarine">Featured Project</p>
+                            <div class="text-right">
+                                <a class="pb-2 text-3xl text-theme-gray-light hover:text-theme-aquamarine"
+                                    href="">Halcyon
+                                    Theme</a>
                             </div>
                         </div>
-                        <div class="w-full sm:w-3/5 mb-4 sm:mb-0 order-first sm:order-last">
-                            <img alt="" class="rounded" height="400" src="images/face1_resize.jpg" width="579">
+                        <div class="bg-[#112240] rounded p-6 sm:-ml-36  mt-6 hover:shadow-2xl">
+                            <p class="leading-relaxed text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
+                                obcaecati
+                                saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
                         </div>
-                    </div>
-                    <!-- work item 2 end -->
-
-                    <!-- work item 3 start -->
-                    <div class="flex flex-wrap items-center mt-20 xs:mt-28">
-                        <div class="w-full sm:w-3/5 mb-4 sm:mb-0">
-                            <img alt="" class="rounded" height="362" src="images/face1_resize.jpg" width="579">
+                        <div class="flex justify-between mt-6 text-sm text-theme-gray-deep md:ml-2 sm:-ml-16">
+                            <span>VS Code</span>
+                            <span>Sublime Text</span>
+                            <span>Hyper</span>
+                            <span>Atom</span>
+                            <span>iTerm2</span>
                         </div>
-                        <div class="w-full sm:w-2/5">
-                            <div>
-                                <p class="text-theme-aquamarine text-right text-sm py-2">Featured Project</p>
-                                <div class="text-right">
-                                    <a class="text-theme-gray-light text-3xl pb-2 hover:text-theme-aquamarine"
-                                        href="">Halcyon
-                                        Theme</a>
-                                </div>
-                            </div>
-                            <div class="bg-[#112240] rounded p-6 sm:-ml-36  mt-6 hover:shadow-2xl">
-                                <p class="leading-relaxed text-theme-gray-deep">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
-                                    obcaecati
-                                    saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                            </div>
-                            <div class="text-theme-gray-deep flex justify-between md:ml-2 sm:-ml-16 mt-6 text-sm">
-                                <span>VS Code</span>
-                                <span>Sublime Text</span>
-                                <span>Hyper</span>
-                                <span>Atom</span>
-                                <span>iTerm2</span>
-                            </div>
-                            <div class="flex justify-end mt-10 items-center">
-                                <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
-                                    <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        color="theme-blue-light" fill="none" height="20" role="img"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <title>GitHub</title>
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-
-                                        </path>
-                                    </svg>
-                                </a>
-                                <a aria-label="External Link" class="ml-5 mb-1"
-                                    href="https://halcyon-theme.netlify.com/" rel="noopener noreferrer" target="_blank">
-                                    <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                        fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <title>External Link</title>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" x2="21" y1="14" y2="3"></line>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- work item 3 end -->
-                </div>
-            </section>
-
-            <!-- Project -->
-            <section class="py-20 mt-14 px-10" id="Project">
-                <div class="max-w-5xl mx-auto px-6 lg:px-0">
-                    <header class="mb-10 text-center">
-                        <h3 class="text-theme-gray-light text-center text-3xl font-bold font-poppins">Other NoteWorthy
-                            Projects</h3>
-                        <p class="text-theme-aquamarine mt-2 p-1">view the archive</p>
-                    </header>
-
-                    <div class="flex flex-wrap">
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-
-                        <!-- Card -->
-                        <div class="p-2 w-full sm:w-1/2 lg:w-1/3">
-                            <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
-                                <div class="flex justify-between items-center py-4">
-                                    <div class=" text-theme-aquamarine h-10 w-10">
-                                        <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <title>Folder</title>
-                                            <path
-                                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex">
-                                        <a href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                color="theme-blue-light" fill="none" height="20" role="img"
-                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>GitHub</title>
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <a class="ml-4 mb-0" href="#" rel="noopener noreferrer" target="_blank">
-                                            <svg class="feather feather-external-link stroke-current text-theme-gray-light hover:text-theme-aquamarine"
-                                                fill="none" height="23" role="img" stroke="currentColor"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <title>External Link</title>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                                </path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" x2="21" y1="14" y2="3"></line>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="py-2 mt-1 text-theme-gray-light font-poppins text-xl">Lorem ipsum dolor
-                                        sit
-                                        amet</h3>
-                                    <p class="text-theme-gray-deep text-sm leading-relaxed">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
-                                </div>
-                                <div class="text-theme-gray-deep pt-6 pb-4 text-xs">
-                                    <span class="">PHP</span>
-                                    <span class="ml-4">Laravel</span>
-                                    <span class="ml-4">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card End -->
-                    </div>
-                    <div class="text-center">
-                        <a class="mt-16 text-theme-aquamarine py-4 px-8 rounded-md border
-                       border-theme-aquamarine text-sm inline-block hover:bg-theme-aquamarine hover:bg-opacity-10"
-                            href="#">
-                            Show More
-                        </a>
-                    </div>
-                </div>
-
-            </section>
-
-            <section class="py-20 mt-8 px-10" id="contact-2">
-                <div class="max-w-5xl mx-auto px-6 lg:px-0">
-                    <header class="mb-6 text-center">
-                        <span class="text-theme-aquamarine">04. What's Next?</span>
-                        <h3 class="text-theme-gray-light text-center text-3xl font-extrabold font-poppins mt-3">Get In
-                            Touch</h3>
-                    </header>
-                    <div class="max-w-[37rem] mx-auto px-1">
-                        <p class="text-center text-theme-gray-deep">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. At, debitis dignissimos dolorem error labore magni minus molestias ratione repudiandae
-                            sed
-                            sunt ullam. Adipisci </p>
-                    </div>
-                    <div class="text-center">
-                        <a class="mt-14 text-theme-aquamarine py-4 px-8 rounded-md border
-                       border-theme-aquamarine text-sm inline-block hover:bg-theme-aquamarine hover:bg-opacity-10"
-                            href="#">
-                            Say Hello
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="pt-20 pb-6 mt-8 px-10" id="contact">
-                <div class="flex justify-center sm:hidden">
-                    <div class="">
-                        <a href="#">
-                            <span
-                                class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                    color="theme-blue-light" fill="none" role="img" height="20" stroke="currentColor"
+                        <div class="flex items-center justify-end mt-10">
+                            <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                    color="theme-blue-light" fill="none" height="20" role="img" stroke="currentColor"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <title>GitHub</title>
                                     <path
                                         d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+
                                     </path>
                                 </svg>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="ml-12">
-                        <a href="#">
-                            <span
-                                class="h-4 w-4 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
-                                    height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-twitter">
-                                    <title>Twitter</title>
-                                    <path
-                                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                    </path>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="ml-12">
-                        <a href="#">
-                            <span
-                                class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                    fill="none" role="img" height="20" stroke="currentColor" stroke-linecap="round"
+                            </a>
+                            <a aria-label="External Link" class="mb-1 ml-5" href="https://halcyon-theme.netlify.com/"
+                                rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                    fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <title>Instagram</title>
-                                    <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5">
+                                    <title>External Link</title>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- work item 1 end -->
 
-                                    </line>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="ml-12">
-                        <a href="#">
-                            <span
-                                class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
-                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine m-auto"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
-                                    height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-linkedin">
-                                    <title>LinkedIn</title>
+                <!-- work item 2 start -->
+                <div class="flex flex-wrap items-center mt-20 xs:mt-28">
+
+                    <div class="z-20 w-full sm:w-2/5">
+                        <div>
+                            <p class="py-2 text-sm text-left text-theme-aquamarine">Featured Project</p>
+                            <div class="text-left">
+                                <a class="pb-2 text-3xl text-theme-gray-light hover:text-theme-aquamarine"
+                                    href="">Halcyon
+                                    Theme</a>
+                            </div>
+                        </div>
+                        <div class="bg-[#112240] rounded p-6 sm:-mr-36  mt-6 hover:shadow-2xl">
+                            <p class="leading-relaxed text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
+                                obcaecati
+                                saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-theme-gray-deep md:mr-2 sm:-mr-16">
+                            <span>VS Code</span>
+                            <span>Sublime Text</span>
+                            <span>Hyper</span>
+                            <span>Atom</span>
+                            <span>iTerm2</span>
+                        </div>
+                        <div class="flex items-center justify-start mt-10">
+                            <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                    color="theme-blue-light" fill="none" height="20" role="img" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>GitHub</title>
                                     <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+
                                     </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
                                 </svg>
-                            </span>
-                        </a>
+                            </a>
+                            <a aria-label="External Link" class="mb-1 ml-5" href="https://halcyon-theme.netlify.com/"
+                                rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                    fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>External Link</title>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="order-first w-full mb-4 sm:w-3/5 sm:mb-0 sm:order-last">
+                        <img alt="" class="rounded" height="400" src="images/face1_resize.jpg" width="579">
                     </div>
                 </div>
-                <div class="max-w-5xl mx-auto px-6 lg:px-0 mt-8 sm:mt-0">
-                    <header class="text-center">
-                        <a class="text-[#a8b2d1] text-xs hover:text-theme-aquamarine"
-                            href="https://github.com/amitedu">Built by Amit Das</a>
-                    </header>
+                <!-- work item 2 end -->
+
+                <!-- work item 3 start -->
+                <div class="flex flex-wrap items-center mt-20 xs:mt-28">
+                    <div class="w-full mb-4 sm:w-3/5 sm:mb-0">
+                        <img alt="" class="rounded" height="362" src="images/face1_resize.jpg" width="579">
+                    </div>
+                    <div class="w-full sm:w-2/5">
+                        <div>
+                            <p class="py-2 text-sm text-right text-theme-aquamarine">Featured Project</p>
+                            <div class="text-right">
+                                <a class="pb-2 text-3xl text-theme-gray-light hover:text-theme-aquamarine"
+                                    href="">Halcyon
+                                    Theme</a>
+                            </div>
+                        </div>
+                        <div class="bg-[#112240] rounded p-6 sm:-ml-36  mt-6 hover:shadow-2xl">
+                            <p class="leading-relaxed text-theme-gray-deep">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laboriosam mollitia
+                                obcaecati
+                                saepe sunt veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-theme-gray-deep md:ml-2 sm:-ml-16">
+                            <span>VS Code</span>
+                            <span>Sublime Text</span>
+                            <span>Hyper</span>
+                            <span>Atom</span>
+                            <span>iTerm2</span>
+                        </div>
+                        <div class="flex items-center justify-end mt-10">
+                            <a aria-label="GitHub Link" href="#" rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                    color="theme-blue-light" fill="none" height="20" role="img" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>GitHub</title>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+
+                                    </path>
+                                </svg>
+                            </a>
+                            <a aria-label="External Link" class="mb-1 ml-5" href="https://halcyon-theme.netlify.com/"
+                                rel="noopener noreferrer" target="_blank">
+                                <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                    fill="none" height="23" role="img" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>External Link</title>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </section>
+                <!-- work item 3 end -->
+            </div>
+        </section>
+
+        <!-- Other Projects -->
+        <section class="px-0 py-20 mt-14 md:px-10 xs:px-6" id="Project">
+            <div class="max-w-5xl px-6 mx-auto lg:px-0">
+                <header class="mb-10 text-center">
+                    <h3 class="text-3xl font-bold text-center text-theme-gray-light font-poppins">Other NoteWorthy
+                        Projects</h3>
+                    <p class="p-1 mt-2 text-theme-aquamarine">view the archive</p>
+                </header>
+
+                <div class="flex flex-wrap">
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class=" ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="https://www.google.com" class="hover:text-theme-aquamarine">
+                                <div>
+                                    <h3
+                                        class="py-2 mt-1 text-xl text-theme-gray-light font-poppins hover:text-theme-aquamarine">
+                                        Lorem ipsum dolor
+                                        sit
+                                        amet</h3>
+                                    <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                        consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                                </div>
+                            </a>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="mb-0 ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="py-2 mt-1 text-xl text-theme-gray-light font-poppins">Lorem ipsum dolor
+                                    sit
+                                    amet</h3>
+                                <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                            </div>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="mb-0 ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="py-2 mt-1 text-xl text-theme-gray-light font-poppins">Lorem ipsum dolor
+                                    sit
+                                    amet</h3>
+                                <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                            </div>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="mb-0 ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="py-2 mt-1 text-xl text-theme-gray-light font-poppins">Lorem ipsum dolor
+                                    sit
+                                    amet</h3>
+                                <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                            </div>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="mb-0 ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="py-2 mt-1 text-xl text-theme-gray-light font-poppins">Lorem ipsum dolor
+                                    sit
+                                    amet</h3>
+                                <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                            </div>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+
+                    <!-- Card -->
+                    <div class="w-full p-2 sm:w-1/2 lg:w-1/3">
+                        <div class="rounded shadow-lg hover:shadow-2xl p-6 bg-[#112240]">
+                            <div class="flex items-center justify-between py-4">
+                                <div class="w-10 h-10 text-theme-aquamarine">
+                                    <svg fill="none" role="img" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Folder</title>
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex">
+                                    <a href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                            color="theme-blue-light" fill="none" height="20" role="img"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>GitHub</title>
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="mb-0 ml-4" href="#" rel="noopener noreferrer" target="_blank">
+                                        <svg class="stroke-current feather feather-external-link text-theme-gray-light hover:text-theme-aquamarine"
+                                            fill="none" height="23" role="img" stroke="currentColor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <title>External Link</title>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                            </path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" x2="21" y1="14" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="py-2 mt-1 text-xl text-theme-gray-light font-poppins">Lorem ipsum dolor
+                                    sit
+                                    amet</h3>
+                                <p class="text-sm leading-relaxed text-theme-gray-deep">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. A dolorum quasi quisquam ut? Porro, ratione?</p>
+                            </div>
+                            <div class="pt-6 pb-4 text-xs text-theme-gray-deep">
+                                <span class="">PHP</span>
+                                <span class="ml-4">Laravel</span>
+                                <span class="ml-4">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card End -->
+                </div>
+                <div class="text-center">
+                    <a class="inline-block px-8 py-4 mt-16 text-sm border rounded-custom text-theme-aquamarine border-theme-aquamarine hover:bg-theme-aquamarine hover:bg-opacity-10"
+                        href="#">
+                        Show More
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact Bottom -->
+        <section class="px-0 py-20 mt-8 md:px-10 xs:px-6" id="contact">
+            <div class="max-w-5xl px-6 mx-auto lg:px-0">
+                <header class="mb-6 text-center">
+                    <span class="text-theme-aquamarine">04. What's Next?</span>
+                    <h3 class="mt-3 text-3xl font-extrabold text-center text-theme-gray-light font-poppins">Get In
+                        Touch</h3>
+                </header>
+                <div class="max-w-[37rem] mx-auto px-1">
+                    <p class="text-center text-theme-gray-deep">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. At, debitis dignissimos dolorem error labore magni minus molestias ratione repudiandae
+                        sed
+                        sunt ullam. Adipisci </p>
+                </div>
+                <div class="text-center">
+                    <a class="inline-block px-8 py-4 text-sm border rounded-custom mt-14 text-theme-aquamarine border-theme-aquamarine hover:bg-theme-aquamarine hover:bg-opacity-10"
+                        href="#">
+                        Say Hello
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <!-- Social Icons -->
+        <section class="px-10 pt-20 pb-6 mt-8 xs:px-20 md:hidden">
+            <div class="flex xs:justify-center justify-evenly">
+                <div class="">
+                    <a href="#">
+                        <span
+                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                            <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                color="theme-blue-light" fill="none" role="img" height="20" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>GitHub</title>
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="ml-auto xs:ml-12">
+                    <a href="#">
+                        <span
+                            class="h-4 w-4 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                            <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                                height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-twitter">
+                                <title>Twitter</title>
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="ml-auto xs:ml-12">
+                    <a href="#">
+                        <span
+                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                            <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                fill="none" role="img" height="20" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Instagram</title>
+                                <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5">
+
+                                </line>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="ml-auto xs:ml-12">
+                    <a href="#">
+                        <span
+                            class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
+                            <svg class="m-auto stroke-current text-theme-gray-light hover:text-theme-aquamarine"
+                                xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                                height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-linkedin">
+                                <title>LinkedIn</title>
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Footnote -->
+        <div class="max-w-5xl px-6 py-2 mx-auto mb-4 md:mt-32 lg:px-0 xs:mt-8 sm:mt-0">
+            <header class="text-center">
+                <a class="text-[#a8b2d1] text-xs hover:text-theme-aquamarine" href="https://github.com/amitedu">Built by
+                    Amit Das</a>
+            </header>
         </div>
-        <!-- <div class="flex-none w-10">
-        </div> -->
     </div>
 
 

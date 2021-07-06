@@ -8,4 +8,8 @@
         outline: 2px dashed #44dbb2;
         outline-offset: 2px;
     }
+
+    .rounded-custom {
+        border-radius: 4px;
+    }
 }

@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require('tailwindcss/colors')
 
 module.exports = {
     purge: [
@@ -21,6 +22,11 @@ module.exports = {
                 "theme-blue-deep": "#0a192f",
                 "theme-gray-light": "#ccd6f6",
                 "theme-gray-deep": "#8892b0",
+                "blueGray": colors.blueGray,
+                "emerald": colors.emerald,
+                "teal": colors.teal,
+                "cyan": colors.cyan,
+                "sky": colors.sky,
             },
             stroke: ['hover', 'focus'],
         },
