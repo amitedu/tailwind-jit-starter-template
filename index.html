@@ -8,8 +8,8 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display-swqp" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="images/my_title_logo.svg" rel="icon">
+    <link href="public/css/styles.css" rel="stylesheet">
+    <link href="public/images/my_title_logo.svg" rel="icon">
     <style>
         html {
             scroll-behavior: smooth;
@@ -48,7 +48,7 @@
     <nav class="fixed inset-x-0 top-0 z-50 flex flex-wrap bg-theme-blue-deep opacity-90"
         x-data="{ showMobileMenu : false }">
         <a href="#" class="p-2 mt-5 ml-4 mr-4 md:ml-8 lg:ml-10">
-            <img alt="site logo" src="images/my_portfolio_logo.svg" width="40">
+            <img alt="site logo" src="public/images/my_portfolio_logo.svg" width="40">
         </a>
         <div @click.away="showMobileMenu = false" @keydown.escape="showMobileMenu = false"
             :class=" showMobileMenu ? 'bg-[#112240] sm:w-1/2 w-2/3' : ''"
@@ -269,7 +269,7 @@
         <section class="px-10 py-20 mt-24 xs:px-6" id="intro" x-data="{ contact: false }">
             <div class="max-w-5xl px-6 mx-auto sm:px-6">
                 <h4 class="text-theme-aquamarine">Hi, my name is</h4>
-                <h1 class="mt-6 -ml-1 font-bold text-7xl text-theme-gray-light font-poppins">Amit Das.</h1>
+                <h1 class="mt-6 -ml-1 font-bold text-7xl text-theme-gray-light font-poppins">Amit Das. H</h1>
                 <h1 class="mt-6 text-6xl font-bold text-theme-gray-deep font-poppins">I build things for the web.
                 </h1>
                 <div class="w-full mt-6 sm:w-5/6 md:w-4/6 lg:1/2">
@@ -477,7 +477,7 @@
                             <div class="border-2 rounded border-theme-aquamarine">
                                 <div class="z-50 w-full h-auto mb-4 mr-4 -mt-4 -ml-4 bg-theme-aquamarine rounded-md">
                                     <img class="rounded opacity-70 hover:opacity-100" height="500px"
-                                        src="images/my_picture.jpg" width="500px">
+                                        src="public/images/my_picture.jpg" width="500px">
                                 </div>
                             </div>
                         </div>
@@ -755,7 +755,8 @@
                 <!-- work item 1 start -->
                 <div class="flex flex-wrap items-center">
                     <div class="w-full mb-4 sm:w-3/5 sm:mb-0">
-                        <img alt="" class="rounded" height="362" src="images/login_management_system.png" width="579">
+                        <img alt="" class="rounded" height="362" src="public/images/login_management_system.png"
+                            width="579">
                     </div>
                     <div class="w-full sm:w-2/5">
                         <div>
@@ -874,7 +875,7 @@
                         </div>
                     </div>
                     <div class="order-first w-full mb-4 sm:w-3/5 sm:mb-0 sm:order-last">
-                        <img alt="" class="rounded" height="400" src="images/TweetyHomePage.png" width="579">
+                        <img alt="" class="rounded" height="400" src="public/images/TweetyHomePage.png" width="579">
                     </div>
                 </div>
                 <!-- work item 2 end -->
@@ -882,7 +883,7 @@
                 <!-- work item 3 start -->
                 <div class="flex flex-wrap items-center mt-20 xs:mt-28">
                     <div class="w-full mb-4 sm:w-3/5 sm:mb-0">
-                        <img alt="" class="rounded" height="362" src="images/Library.png" width="579">
+                        <img alt="" class="rounded" height="362" src="public/images/Library.png" width="579">
                     </div>
                     <div class="w-full sm:w-2/5">
                         <div>
