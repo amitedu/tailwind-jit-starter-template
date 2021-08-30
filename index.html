@@ -262,7 +262,7 @@
     <div class="md:ml-12">
 
         <!-- Intro -->
-        <section class="px-10 py-20 mt-24 xs:px-6" id="intro" x-data="{ contact: false }">
+        <section class="md:px-10 py-20 mt-24 xs:px-6" id="intro" x-data="{ contact: false }">
             <div class="max-w-5xl px-6 mx-auto sm:px-6">
                 <h4 class="text-theme-aquamarine">Hi, my name is</h4>
                 <h1 class="mt-6 -ml-1 font-bold text-7xl text-theme-gray-light font-poppins">Amit Das.</h1>
@@ -346,9 +346,9 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <div class="absolute z-0 w-40 h-40 rounded-full bg-theme-aquamarine -right-24 -top-24">
+                            <div class="absolute z-0 w-40 h-40 rounded-full xs:bg-theme-aquamarine -right-24 -top-24">
                             </div>
-                            <div class="absolute z-0 w-40 h-40 rounded-full bg-theme-aquamarine -left-28 -bottom-16">
+                            <div class="absolute z-0 w-40 h-40 rounded-full xs:bg-theme-aquamarine -left-28 -bottom-16">
                             </div>
                             <div class="relative z-10 bg-white rounded-lg p-6 text-gray-600">
                                 <div x-data="game()" class="relative">
@@ -415,14 +415,14 @@
 
 
         <!-- About Me-->
-        <section class="px-10 py-20 mt-48 xs:px-6 " id="about">
+        <section class="md:px-10 py-20 mt-48 xs:px-6 " id="about">
             <div class="max-w-5xl px-6 mx-auto sm:px-6">
                 <header class="mb-16 flex items-center space-x-4">
                     <h3 class="text-theme-gray-light font-poppins">
                         <span class="text-xl text-theme-aquamarine">01.</span>
                         <span class="ml-2 text-3xl font-bold">About Me</span>
                     </h3>
-                    <div class="bg-[#233554] h-[1px] w-52 lg:w-72 "></div>
+                    <div class="bg-[#233554] h-[1px] xs:w-40 md:w-52 lg:w-72"></div>
                 </header>
                 <div class="flex flex-wrap items-center">
                     <div class="order-last w-full mt-0 sm:w-3/5 sm:order-first">
@@ -746,7 +746,7 @@
                         <span class="text-xl text-theme-aquamarine">03.</span>
                         <span class="ml-2 text-3xl font-bold">Some Things I've Built</span>
                     </h3>
-                    <div class="bg-[#233554] h-[1px] w-52 lg:w-72 "></div>
+                    <div class="bg-[#233554] h-[1px] xs:w-40 md:w-52 lg:w-72"></div>
                 </header>
                 <!-- work item 1 start -->
                 <div class="flex flex-wrap items-center">
@@ -1566,8 +1566,8 @@
 
         <!-- Footer -->
         <!-- Social Icons -->
-        <section class="px-10 pt-20 pb-6 mt-8 xs:px-20 md:hidden">
-            <div class="flex xs:justify-center justify-evenly">
+        <section class="mt-20 mb-4 md:hidden">
+            <div class="flex justify-center max-w-[14rem] mx-auto px-2">
                 <div class="">
                     <a href="#">
                         <span
@@ -1583,7 +1583,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="ml-auto xs:ml-12">
+                <div class="ml-auto">
                     <a href="#">
                         <span
                             class="h-4 w-4 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
@@ -1599,7 +1599,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="ml-auto xs:ml-12">
+                <div class="ml-auto">
                     <a href="#">
                         <span
                             class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
@@ -1616,7 +1616,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="ml-auto xs:ml-12">
+                <div class="ml-auto">
                     <a href="#">
                         <span
                             class="h-6 w-6 text-[#a8b2d1] hover:text-theme-aquamarine mx-auto transition-colors duration-200">
@@ -1640,10 +1640,12 @@
 
 
         <!-- Footnote -->
-        <div class="max-w-5xl px-6 py-2 mx-auto mb-4 md:mt-32 lg:px-0 xs:mt-8 sm:mt-0">
+        <div class="max-w-5xl px-4 py-2 mx-auto mb-4 md:mt-32 lg:px-0 xs:mt-2 sm:mt-0">
             <header class="text-center">
-                <a class="text-[#a8b2d1] text-xs hover:text-theme-aquamarine" href="https://github.com/amitedu">Built by
-                    Amit Das</a>
+                <a class="tracking-wide text-[#a8b2d1] text-xs hover:text-theme-aquamarine" href="https://github.com/amitedu">
+                    <p>Built with Tailwind and AlpineJS</p>
+                    <p>by Amit Das</p>
+                </a>
             </header>
         </div>
     </div>
